@@ -1,55 +1,62 @@
-// id.core.js — 6D CORE-SCHALTUNG
-// leave ↔ releave — Kernpunkt
+// id.core.js — MASTER-PI Kernmodul
+// TRANS / WARB / KANAL — 6E → 6D Stabilität
 
-export function ID_CORE(IX, XI, MODE) {
+export function ID_CORE(IX, XI, FRAME) {
 
-    // 6D — Kernmodus
-    const CORE = MODE === "leave"
-        ? "CORE_OUT"
-        : "CORE_IN";
+    // ORT — Position
+    const ORT = { X: IX, Y: XI };
 
-    // 6D — Kernvektor
-    const VEKTOR = {
-        X: IX * (CORE === "CORE_OUT" ? 2 : 3),
-        Y: XI * (CORE === "CORE_OUT" ? 3 : 2),
-        Z: (IX + XI) / 2
+    // HOME — Ursprung
+    const HOME = { X: 0, Y: 0 };
+
+    // WEG — Richtung
+    const WEG = {
+        DX: IX - HOME.X,
+        DY: XI - HOME.Y
     };
 
-    // 6D — Kanalpunkt
-    const KANAL = (VEKTOR.X + VEKTOR.Y + VEKTOR.Z) / 3;
+    // STRECKE — Distanz
+    const STRECKE = Math.sqrt(WEG.DX**2 + WEG.DY**2);
 
-    // 6D — SLI-Kernimpuls
-    const SLI = Math.sqrt(
-        VEKTOR.X**2 +
-        VEKTOR.Y**2 +
-        VEKTOR.Z**2
-    ) * 4;
+    // SLI — Beschleunigung (4 = Pipeline 4)
+    const SLI = STRECKE * 4;
 
-    // 6D — RAW-Kernwert
-    const RAW = VEKTOR.X + VEKTOR.Y - VEKTOR.Z;
+    // TRANS / WARB / KANAL — Essenz
+    const TRANS = IX * 2;       // Bewegung
+    const WARB  = XI * 3;       // Gegenhalt
+    const KANAL = (IX + XI) / 2; // Verbindung
+
+    // RAW — Kernwert (6E → 6D Übergang)
+    const RAW = TRANS + WARB - KANAL;
+
+    // 6E — Achsenstabilität
+    const SIXE = {
+        X: IX >= 0 ? +1 : -1,
+        Y: XI >= 0 ? +1 : -1
+    };
+
+    // 6D — Stabilisierung (RAW als Dimensionsträger)
+    const SIXD = {
+        D1: RAW,
+        D2: RAW * 2,
+        D3: RAW / 2,
+        D4: STRECKE,
+        D5: SLI,
+        D6: TRANS - WARB
+    };
 
     return {
-        MODE,
-        CORE,
-        VEKTOR,
-        KANAL,
+        ORT,
+        HOME,
+        WEG,
+        STRECKE,
         SLI,
-        RAW
+        TRANS,
+        WARB,
+        KANAL,
+        RAW,
+        SIXE,
+        SIXD,
+        FRAME
     };
 }
-
-/* NARRATIV — 6D CORE
-leave öffnet den Kern.
-releave schließt den Kern.
-
-CORE_OUT sendet.
-CORE_IN empfängt.
-
-VEKTOR ist die 6D-Form.
-KANAL ist die Verbindung.
-SLI ist die Bewegung.
-RAW ist die Wahrheit.
-
-6D ist die Kernschaltung zwischen beiden.
-*/
-
