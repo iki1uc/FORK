@@ -11,39 +11,86 @@
 
 <script type="module">
 
-    /* -------------------------------------------------------
-       1. WORK / SLI.raw / SCHACH-System
-       ------------------------------------------------------- */
+/* -------------------------------------------------------
+   1. SCHACH / SLI.raw / WORK Basis
+------------------------------------------------------- */
+import { AXIOM } from "./SCHACH.js";
+import { TMP } from "./kit.js";
 
-    import { AXIOM } from "./SCHACH.js";
-    import { TMP } from "./kit.js";
-
-    const frame = TMP();
-    AXIOM(frame);
-
-
-    /* -------------------------------------------------------
-       2. BIL‑3E Mind‑Station (Superlage)
-       ------------------------------------------------------- */
-
-    import { BIL_3E } from "./mind.bil.js";
-
-    const mind = BIL_3E(1, 2);
-    console.log("BIL‑3E Mind‑Station:", mind);
+const frame = TMP();
+AXIOM(frame);
 
 
-    /* -------------------------------------------------------
-       3. FORK‑NC Pipeline
-       LIST → SYNC → LOAD → SYSTEM → RUN → SLI
-       ------------------------------------------------------- */
+/* -------------------------------------------------------
+   2. BIL‑3E Mind‑Station
+------------------------------------------------------- */
+import { BIL_3E } from "./mind.bil.js";
 
-    import { NC_LIST } from "./nc.list.js";
-    import { NC_SYNC } from "./nc.sync.js";
-    import { NC_LOADER } from "./nc.loader.js";
-    import { NC_SYSTEM } from "./nc.system.js";
-    import { NC_RUN } from "./nc.run.js";
-    import { NC_SLI } from "./nc.sli.js";
+const mind = BIL_3E(1, 2);
+console.log("BIL‑3E Mind‑Station:", mind);
 
+
+/* -------------------------------------------------------
+   3. WORK + CSV Learning
+------------------------------------------------------- */
+import { WORK_CSV_LEARNER } from "./WORK_CSV_LEARNER.js";
+import { csv_read } from "./csv.read.js";
+
+async function WORK_LEARN() {
+    const csv = await fetch("./achse-modul-3.csv").then(r => r.text());
+    const result = WORK_CSV_LEARNER.pipeline(csv, { axisId: 1 });
+
+    console.log("WORK gelernt:", result);
+    return result;
+}
+
+
+/* -------------------------------------------------------
+   4. FORK + SLI Learning
+------------------------------------------------------- */
+import { FORK_LEARNER } from "./FORK_LEARNER.js";
+import { SLILOCHER } from "./SLI‑LOCHER.js";
+
+function FORK_LEARN() {
+    const work = { vector: { z: 1 } };
+    const fork = { vector: { z: -1 } };
+    const sli  = { vector: { z: 0.5 } };
+
+    const result = FORK_LEARNER.pipeline(work, fork, sli);
+
+    console.log("FORK gelernt:", result);
+    return result;
+}
+
+
+/* -------------------------------------------------------
+   5. RESPO CSV Learning
+------------------------------------------------------- */
+import { RESPO_CSV_LEARNER } from "./RESPO_CSV_LEARNER.js";
+
+async function RESPO_LEARN() {
+    const csv = await fetch("./achse-modul-3.csv").then(r => r.text());
+    const result = RESPO_CSV_LEARNER.pipeline(csv, {
+        axis: "X",
+        narrative: "TRANS bewegt"
+    });
+
+    console.log("RESPO gelernt:", result);
+    return result;
+}
+
+
+/* -------------------------------------------------------
+   6. NC‑System (LIST → SYNC → LOAD → SYSTEM → RUN → SLI)
+------------------------------------------------------- */
+import { NC_LIST } from "./nc.list.js";
+import { NC_SYNC } from "./nc.sync.js";
+import { NC_LOADER } from "./nc.loader.js";
+import { NC_SYSTEM } from "./nc.system.js";
+import { NC_RUN } from "./nc.run.js";
+import { NC_SLI } from "./nc.sli.js";
+
+function NC_PIPELINE() {
     const keys = ["W","A","S","D"];
 
     const list = NC_LIST(keys);
@@ -53,9 +100,23 @@
     const run  = NC_RUN(sys);
     const sli  = NC_SLI(run);
 
-    console.log("SLI BIOS:", sli);
+    console.log("NC SLI BIOS:", sli);
+    return sli;
+}
 
-</script>
 
+/* -------------------------------------------------------
+   7. MASTER PIPELINE — ALLES LERNT
+------------------------------------------------------- */
+async function MASTER() {
+    console.log("▶ STARTE MASTER‑PIPELINE…");
+
+    const work = await WORK_LEARN();
+    const fork = FORK_LEARN();
+    const respo = await RESPO_LEARN();
+    const nc = NC_PIPELINE();
+
+    console.log("=====================================");
+    console.log("MASTER‑PIPE
 </body>
 </html>
