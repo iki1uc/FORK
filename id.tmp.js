@@ -45,7 +45,7 @@ export function ID_TMP(IX, XI, MODE) {
         SLI
     };
 }
-
+ 
 /* NARRATIV — 6D + 7SINN
 leave öffnet die Zeit.
 releave schließt die Zeit.
