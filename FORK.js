@@ -1,21 +1,18 @@
-// FORK.js — dunkler Beschleuniger (2-4-8)
+// FORK.js — 2-4-8 Realraum-Lauf
 
+import { CUBE_MIND } from "./CUBE_MIND.js";
 import { SLI2 } from "./zug.js";
-import { SCHACH } from "./SCHACH.js";
 
-export function FORK(v, tmp) {
+export function FORK(x, y, tmp) {
+
+    const { real, raum } = CUBE_MIND(x, y);
+
+    if (!real) return { active: false, reason: "Nicht realisiert" };
 
     const axis = [2, 4, 8];
-    if (!axis.includes(v)) return { active: false, reason: "Nicht FORK-Achse" };
+    if (!axis.includes(x)) return { active: false, reason: "Nicht FORK-Achse" };
 
-    const roles = SCHACH.tmpRole(tmp);
-    const sli = SLI2(v, tmp, tmp, 243);
+    const sli = SLI2(real.y, tmp, tmp, raum);
 
-    return {
-        type: "FORK",
-        alpha: roles.alpha,
-        beta: roles.beta,
-        gamma: roles.gamma,
-        sli
-    };
+    return { type: "FORK", real, sli };
 }
