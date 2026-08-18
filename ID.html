@@ -2,44 +2,96 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>ID — FORK‑RESPO Modul</title>
+    <title>ID releave</title>
+    <script type="module">
+        // MASTER-PI SLIDE-CODE BLOCK
+        export function SLIDE(IX, XI, FRAME) {
+
+            const ORT = { X: IX, Y: XI };
+            const HOME = { X: 0, Y: 0 };
+
+            const WEG = {
+                DX: IX - HOME.X,
+                DY: XI - HOME.Y
+            };
+
+            const STRECKE = Math.sqrt(WEG.DX**2 + WEG.DY**2);
+            const SLI = STRECKE * 4;
+
+            const TRANS = IX * 2;
+            const WARB  = XI * 3;
+            const KANAL = (IX + XI) / 2;
+
+            const RAW = TRANS + WARB - KANAL;
+
+            return {
+                ORT,
+                HOME,
+                WEG,
+                STRECKE,
+                SLI,
+                TRANS,
+                WARB,
+                KANAL,
+                RAW,
+                FRAME
+            };
+        }
+    </script>
 </head>
 
 <body>
-    <h1>Modul‑Identität: FORK‑RESPO</h1>
+    <h1>Modul‑Identität: WORK‑RESPO</h1>
 
     <section>
         <h2>Grunddaten</h2>
-        <p>ID: FRK‑7‑01‑B</p>
+        <p>ID: WRK‑7‑01‑A</p>
         <p>Layer: 7</p>
         <p>Pipeline: 4‑01‑2</p>
-        <p>Sync: counter</p>
-        <p>Typ: Gegenkraft & Spiegel</p>
+        <p>Sync: neutral</p>
+        <p>Typ: Stabilität & Reinheit</p>
     </section>
 
     <section>
         <h2>Achsen</h2>
-        <p>X: unstable</p>
-        <p>IX: raw</p>
-        <p>XI: reactive</p>
-        <p>VOID: closed</p>
+        <p>X: stable</p>
+        <p>IX: pure</p>
+        <p>XI: active</p>
+        <p>AIR: open</p>
     </section>
 
     <section>
-        <h2>Stimmungs‑Spektrum (180° DUNKEL)</h2>
-        <p>Spektrum: 180° – 360°</p>
-        <p>Hell‑Level: 0.21</p>
-        <p>Dunkel‑Level: 0.79</p>
-        <p>Modus: pre‑fork</p>
+        <h2>Stimmungs‑Spektrum (180° HELL)</h2>
+        <p>Spektrum: 0° – 180°</p>
+        <p>Hell‑Level: 0.72</p>
+        <p>Dunkel‑Level: 0.28</p>
+        <p>Modus: pre‑work</p>
     </section>
 
     <section>
         <h2>Status</h2>
-        <p>Drift: 1</p>
-        <p>Ghost: 1</p>
+        <p>Drift: 0</p>
+        <p>Ghost: 0</p>
         <p>Load: ready</p>
         <p>Save: ready</p>
-        <p>Pool: mirror</p>
+        <p>Pool: ready</p>
+    </section>
+
+    <!-- NARRATIV BLOCK -->
+    <section>
+        <h2>MASTER‑PI Narrativ</h2>
+        <p>TRANS bewegt.</p>
+        <p>WARB hält gegen.</p>
+        <p>KANAL verbindet.</p>
+        <p>ORT zeigt die Position.</p>
+        <p>HOME zeigt den Ursprung.</p>
+        <p>WEG zeigt die Richtung.</p>
+        <p>STRECKE zeigt die Distanz.</p>
+        <p>SLI zeigt die Beschleunigung.</p>
+        <p>RAW ist die Wahrheit zwischen 6E und 6D.</p>
+        <p>Pipeline 4 → 0 → 1 → 2 bleibt stabil.</p>
+        <p>Atalardan bleibt stabil.</p>
+        <p>TRANS/WARB-Technologie bleibt stabil.</p>
     </section>
 </body>
 </html>
