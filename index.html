@@ -1,132 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>FORK — RESPO CORE (BLACK)</title>
-
-<style>
-    body {
-        margin: 0;
-        background: #000;
-        color: #fff;
-        font-family: monospace;
-        text-align: center;
-        padding-top: 5vh;
-        letter-spacing: 2px;
-    }
-
-    canvas {
-        display: block;
-        margin: 0 auto;
-        background: #000;
-        border: none;
-    }
-
-    h1 {
-        font-weight: normal;
-    }
-</style>
-
+    <meta charset="UTF-8">
+    <title>FORK System</title>
 </head>
 <body>
 
-<!-- FORK‑RESPO CORE v1.0 -->
-<respo id="FORK" layer="7" axis="X IX XI VOID">
-    <identity>
-        <core>FORK‑RESPO</core>
-        <signature>FRK‑7‑01‑B</signature>
-        <pipeline>4‑01‑2</pipeline>
-        <sync>counter</sync>
-    </identity>
+<h1>FORK — Unified System</h1>
+<p>System initialisiert…</p>
 
-    <axes>
-        <x>unstable</x>
-        <ix>raw</ix>
-        <xi>reactive</xi>
-        <void>closed</void>
-    </axes>
+<script type="module">
 
-    <state>
-        <drift>1</drift>
-        <ghost>1</ghost>
-        <load>ready</load>
-        <save>ready</save>
-        <pool>mirror</pool>
-    </state>
-</respo>
+    /* -------------------------------------------------------
+       1. WORK / SLI.raw / SCHACH-System
+       ------------------------------------------------------- */
 
-<h1>FORK — RESPO CORE (BLACK)</h1>
+    import { AXIOM } from "./SCHACH.js";
+    import { TMP } from "./kit.js";
 
-<canvas id="fork" width="900" height="600"></canvas>
+    const frame = TMP();
+    AXIOM(frame);
 
-<script>
-// ------------------------------------------------------
-// FORK — RESPO AXIS ENGINE (BLACK)
-// ------------------------------------------------------
 
-const fork = {
-    pipeline: "4‑01‑2",
-    axis: {
-        x: "unstable",
-        ix: "raw",
-        xi: "reactive",
-        void: "closed"
-    },
-    sync: "counter"
-};
+    /* -------------------------------------------------------
+       2. BIL‑3E Mind‑Station (Superlage)
+       ------------------------------------------------------- */
 
-function axisValueFORK(state){
-    switch(state){
-        case "unstable": return -0.8;
-        case "raw":      return -1.0;
-        case "reactive": return -1.3;
-        case "closed":   return -1.6;
-        default:         return -1.0;
-    }
-}
+    import { BIL_3E } from "./mind.bil.js";
 
-const FX    = axisValueFORK(fork.axis.x);
-const FIX   = axisValueFORK(fork.axis.ix);
-const FXI   = axisValueFORK(fork.axis.xi);
-const FVOID = axisValueFORK(fork.axis.void);
+    const mind = BIL_3E(1, 2);
+    console.log("BIL‑3E Mind‑Station:", mind);
 
-const ctxF = document.getElementById("fork").getContext("2d");
 
-const AXES_F = [];
-for (let i = 0; i < 756; i++) {
-    AXES_F.push({
-        x: Math.sin(i * 0.01) * FX,
-        y: Math.cos(i * 0.01) * FIX,
-        z: Math.sin(i * 0.02) * FXI,
-        w: Math.cos(i * 0.02) * FVOID
-    });
-}
+    /* -------------------------------------------------------
+       3. FORK‑NC Pipeline
+       LIST → SYNC → LOAD → SYSTEM → RUN → SLI
+       ------------------------------------------------------- */
 
-let tf = 0;
+    import { NC_LIST } from "./nc.list.js";
+    import { NC_SYNC } from "./nc.sync.js";
+    import { NC_LOADER } from "./nc.loader.js";
+    import { NC_SYSTEM } from "./nc.system.js";
+    import { NC_RUN } from "./nc.run.js";
+    import { NC_SLI } from "./nc.sli.js";
 
-function animateFORK(){
-    tf += 0.01;
-    ctxF.clearRect(0,0,900,600);
+    const keys = ["W","A","S","D"];
 
-    for (let i=0; i<AXES_F.length; i++){
-        const a = AXES_F[i];
+    const list = NC_LIST(keys);
+    const sync = NC_SYNC(list);
+    const load = NC_LOADER.packet("W");
+    const sys  = NC_SYSTEM.packet("W");
+    const run  = NC_RUN(sys);
+    const sli  = NC_SLI(run);
 
-        const fade = Math.abs(Math.sin(tf + a.w * 0.001));
-        if (fade < 0.25) continue;
+    console.log("SLI BIOS:", sli);
 
-        const x = 450 + Math.sin(tf + a.x * 0.002) * (200 + Math.sin(i*0.01)*20);
-        const y = 300 + Math.cos(tf + a.y * 0.002) * (150 + Math.cos(i*0.01)*20);
-
-        ctxF.fillStyle = `rgba(0, 0, 0, ${fade})`;
-        ctxF.beginPath();
-        ctxF.arc(x, y, 3, 0, Math.PI*2);
-        ctxF.fill();
-    }
-
-    requestAnimationFrame(animateFORK);
-}
-
-animateFORK();
 </script>
 
 </body>
