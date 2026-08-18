@@ -1,17 +1,20 @@
 # FORK / WORK / ID – RAW-System README.md
 Version: RAW-0.1  
-Signatur: EK-RAW-01  
+Signatur: GK-RAW-01  
 Status: Minimalfassung (6→36)
 
 ## 0. gestohlener kuss (Layer 0)
 Der gestohlener kuss ist das Eingangssignal des Systems.
-Er liefert den Zustand ungefiltert, ungedämpft, unoptimiert.
+Er ist ein systematischer, ungefragter, unkontrollierter Eingriff
+in den Zustand des Systems.
 
 Eigenschaften:
 - roh  
 - direkt  
 - kurz  
 - klar  
+- invasiv  
+- ungefragt  
 - ohne WORK-Filter  
 - ohne FORK-Dämpfung  
 - ohne ID-Glättung  
@@ -29,8 +32,6 @@ Alles reduziert sich auf drei physikalische Basen:
 1. Masse  
 2. Energie  
 3. Raum  
-
-Diese drei bilden die Grundlage für alle Schichten.
 
 ---
 
@@ -84,8 +85,6 @@ Die 26 Schichten werden um 10 Funktions-Schichten erweitert:
 - Leben  
 - Geschlechter-Balance  
 - Quartier  
-
-Damit entsteht das vollständige 36-D-System.
 
 ---
 
