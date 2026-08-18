@@ -3,7 +3,7 @@ Version: RAW-0.1
 Signatur: EK-RAW-01  
 Status: Minimalfassung (6→36)
 
-## 0.gestohlener kuss (Layer 0)
+## 0. gestohlener kuss (Layer 0)
 Der gestohlener kuss ist das Eingangssignal des Systems.
 Er liefert den Zustand ungefiltert, ungedämpft, unoptimiert.
 
@@ -111,4 +111,3 @@ Ein System, das:
 - logisch dokumentiert ist  
 - auf 36 skalierbar bleibt  
 - aber im Minimum nur 6 Schichten braucht  
-
