@@ -1,45 +1,30 @@
-// id.nc.js — 6D-MIND-SCHALTUNG
-// leave ↔ releave — Beam-Switch
+// id.nc.js — NEUTRAL NC SCHICHT (6E → 12E → TMP)
+// KEINE 6D-MIND-SCHALTUNG
+// KEIN BEAM-SWITCH
+// NUR MATHEMATIK
 
 export function ID_NC(IX, XI, MODE) {
 
-    // 6D — Mind-Schaltung
-    const MIND = MODE === "leave"
-        ? "OUT_BEAM"
-        : "IN_BEAM";
+    // MODE — neutraler Modus (kein Mind-Switch)
+    const MODE_STATE = MODE === "leave" ? "OUT" : "IN";
 
-    // 6D — Beam-Punkt
+    // NEUTRALER BEAM — mathematisch, nicht mental
     const BEAM = {
-        X: IX * (MIND === "OUT_BEAM" ? 2 : 3),
-        Y: XI * (MIND === "OUT_BEAM" ? 3 : 2)
+        X: IX * (MODE_STATE === "OUT" ? 1.5 : 1.0),
+        Y: XI * (MODE_STATE === "OUT" ? 1.0 : 1.5)
     };
 
-    // 6D — Kanal
+    // KANAL — Verbindung (neutral)
     const KANAL = (BEAM.X + BEAM.Y) / 2;
 
-    // 6D — SLI-Impuls
+    // SLI — Beschleunigung (neutral)
     const SLI = Math.sqrt(BEAM.X**2 + BEAM.Y**2) * 4;
 
     return {
         MODE,
-        MIND,
+        STATE: MODE_STATE,
         BEAM,
         KANAL,
         SLI
     };
 }
-
-/* NARRATIV — 6D
-leave öffnet.
-releave schließt.
-
-OUT_BEAM sendet.
-IN_BEAM empfängt.
-
-BEAM ist der Punkt.
-KANAL ist die Verbindung.
-SLI ist die Bewegung.
-
-6D ist die Schaltung zwischen beiden.
-*/
-
